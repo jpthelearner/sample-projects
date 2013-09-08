@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+task initProject () << {
+	if (hasProperty(initPlugins)) {
+		initPlugins.split(',').each { plug -> project.apply { plugin(plug.trim()) } }
+	}	
+
+	project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { dir ->
+		dir.mkdirs()
+	}
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2+'
+    testCompile 'junit:junit:4.+'
+}
+
