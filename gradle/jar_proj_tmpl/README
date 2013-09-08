@@ -1,0 +1,5 @@
+usage:
+#run a specific test class
+gradle --daemon -Dsingle.test=HelloWorld test
+#create project structure
+gradle --daemon -PinitPlugins=java initProject
