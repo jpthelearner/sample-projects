@@ -1,0 +1,7 @@
+task process_war() << {
+	ant.unzip(dest : war_staging_dir, src: war_file) 
+	ant.replace(dir: war_staging_dir, replacefilterfile:replace_filter_dir+'/'+env+'.properties', includes: '**/*.properties')
+	ant.war(destfile: war_file, basedir: war_staging_dir, update: true)
+}
+
+process_war.dependsOn(war)

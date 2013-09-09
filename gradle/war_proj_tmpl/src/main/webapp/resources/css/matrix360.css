@@ -1,0 +1,11 @@
+table.form_table {width:100%; border:0px}
+
+table.form_table td {border:0px solid #778899;background-color:#fff;padding:3px 8px;
+	font-family:arial,verdana,sans-serif;font-size:12px;color:#000;
+}
+
+table.form_table tr:nth-of-type(odd) td {background-color: #EEF2F9;
+    background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 51%, rgba(255, 255, 255, 0) 100%);}
+th.sorting_disabled {
+	background-color:#fff;
+}

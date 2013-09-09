@@ -4,6 +4,6 @@ task tar() << {
 			include(name: '**/*')
 		}
 	}
-	ant.replace(dir: tar_staging_dir, replacefilterfile:properties_dir+'/'+env+'.properties', excludes: '**/*.jar')
+	ant.replace(dir: tar_staging_dir, replacefilterfile:replace_filter_dir+'/'+env+'.properties', excludes: '**/*.jar')
 	ant.tar(destfile: tar_file, basedir: tar_staging_dir)
 }
