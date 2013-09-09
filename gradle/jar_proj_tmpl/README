@@ -1,5 +1,8 @@
 usage:
 #run a specific test class
 gradle --daemon -Dsingle.test=HelloWorld test
+#create the jar 
+gradle --daemon jar
 #create project structure
 gradle --daemon -PinitPlugins=java initProject
+
