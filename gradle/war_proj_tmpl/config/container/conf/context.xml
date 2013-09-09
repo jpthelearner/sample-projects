@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxActive="20" maxIdle="10" maxWait="10000" name="jdbc/mydb" password="@mydb.cred@" type="javax.sql.DataSource" url="@mydb.jdbc.url@" username="@mydb.username@" removeAbandoned="true" removeAbandonedTimeout="30" logAbandoned="true"/>
+
+</Context>
+

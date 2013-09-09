@@ -1,0 +1,36 @@
+# Environment variable script for application start/stop/status scripts
+# For Tomcat 7 server style
+
+# Determine OS
+os=`uname -a | awk '{ print $1 }'`
+
+# Java settings
+java_root=@java_root@
+java_cmd=$java_root/bin/java
+JAVA_HOME=$java_root; export JAVA_HOME
+
+# Tomcat settings
+tomcat_root=@tomcat_root@
+tomcat_cp=$tomcat_root/bin/tomcat-juli.jar:$tomcat_root/bin/bootstrap.jar
+
+# Set threads setting
+THREADS_FLAG=native; export THREADS_FLAG
+
+# Application settings
+app_name=@app_name@
+app_root_base=@app_root_base@
+app_root=$app_root_base/$app_name
+logdir=$app_root/logs
+bindir=$app_root/bin
+etcdir=$app_root/etc
+libdir=$app_root/lib
+confdir=$app_root/conf
+app_cp=@app_cp@
+cp=$tomcat_cp:$app_cp
+log4jfile=$app_root/etc/log4j.xml                 
+env=@env@
+
+ulimit -n 1024
+umask 022
+cd $app_root
+

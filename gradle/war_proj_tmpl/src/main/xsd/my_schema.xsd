@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.jp.com/m360" elementFormDefault="qualified"
+	xmlns:m360="http://www.jp.com/m360">
+
+    <element name="myResponse">
+        <complexType>
+        	<choice>
+        		<element name="schemaA" type="m360:SchemaA"/>
+        	</choice>
+        </complexType>
+    </element>
+	
+    <complexType name="SchemaA">
+    	<sequence>
+    		<element name="schemaB" type="m360:SchemaB" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="SchemaB"> 
+    	<sequence>
+    		<element name="productName" type="string"></element>
+    	</sequence>
+    </complexType>
+
+</schema>

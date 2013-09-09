@@ -1,0 +1,29 @@
+repositories {
+    mavenCentral()
+}
+
+ext.springVersion='3.1.1.RELEASE'
+ext.tilesVersion='2.2.2'
+
+dependencies {
+        compile 'log4j:log4j:1.2.+'
+        testCompile 'junit:junit:4.+'
+
+        xjc group: 'com.sun.xml.bind', name: 'jaxb-xjc', version: '2.2.4-1'
+        sshAntTask group: 'org.apache.ant', name: 'ant-jsch', version: '1.9.1'
+
+        providedCompile 'javax.servlet:servlet-api:2.5'
+        providedCompile 'javax.servlet.jsp:jsp-api:2.1'
+        runtime 'javax.servlet:jstl:1.2'
+        runtime 'taglibs:standard:1.1.2'
+        compile 'commons-dbcp:commons-dbcp:1.2.2'
+        compile fileTree(dir: 'lib', include: '*.jar')
+        compile "org.springframework:spring-webmvc:$springVersion"
+        compile("org.apache.tiles:tiles-api:$tilesVersion")
+        compile("org.apache.tiles:tiles-core:$tilesVersion")
+        compile("org.apache.tiles:tiles-jsp:$tilesVersion")
+        compile("org.apache.tiles:tiles-servlet:$tilesVersion")
+        compile("org.apache.tiles:tiles-template:$tilesVersion")
+        compile 'org.slf4j:slf4j-api:1.7.1'
+}
+

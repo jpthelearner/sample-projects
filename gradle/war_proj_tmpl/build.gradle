@@ -1,0 +1,36 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+configurations {
+	xjc
+	sshAntTask
+}
+
+apply from: 'gradle_files/lib.gradle'
+apply from: 'gradle_files/xjc.gradle'
+apply from: 'gradle_files/war.gradle'
+apply from: 'gradle_files/tar.gradle'
+
+/*
+//*********SCP-start*************************************
+ant.taskdef(
+	name: 'scp',
+	classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+	classpath: configurations.sshAntTask.asPath)
+
+def uploadPath = env+"_server_upload_path"
+
+task upload() {
+	doLast  {
+		"${project.getProperty(uploadPath)}".tokenize(',').each {
+			println 'uploading to '+it
+			ant.scp(
+				trust: 'true',  
+				file: (deploy_type=='war')?war_file:tar_file,
+				password: my_passphrase,
+				todir: it)
+		}
+	}
+  }
+//*********SCP-end*****************************************
+*/

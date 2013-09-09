@@ -1,0 +1,9 @@
+task tar() << {
+	ant.copy(todir : tar_staging_dir, overwrite: true) {
+		fileSet(dir: container_dir) {
+			include(name: '**/*')
+		}
+	}
+	ant.replace(dir: tar_staging_dir, replacefilterfile:properties_dir+'/'+env+'.properties', excludes: '**/*.jar')
+	ant.tar(destfile: tar_file, basedir: tar_staging_dir)
+}

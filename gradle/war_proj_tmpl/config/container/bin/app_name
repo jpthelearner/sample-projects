@@ -1,0 +1,63 @@
+#!/bin/sh
+# tomcat server
+
+if test "$LOGNAME" = "root"
+then
+  echo "This application should not be run as root!"
+  exit 1
+fi
+
+. `dirname $0`/../etc/env
+
+port=8080
+
+JAVA_OPTIONS=" -Xms128m -Xmx512m"
+CLASSPATH=$cp; export CLASSPATH
+
+case "$1" in
+
+'start')
+    echo "*** starting $app_name. check 'tail -f ../logs/console.log' for details"
+    cd $app_root
+    $java_cmd -Did=$app_name \
+	$JAVA_OPTIONS \
+	-classpath $CLASSPATH \
+	-Dcatalina.home=$tomcat_root \
+	-Dcatalina.base=$app_root \
+	-Dlog4j.configuration=file:$log4jfile \
+	-Denvironment=$env \
+	org.apache.catalina.startup.Bootstrap \
+	-config $confdir/server.xml \
+	start >> $logdir/console.log 2>&1 &
+  ;;
+
+'stop')
+    echo "*** stopping $app_name. check 'tail -f ../logs/console.log' for details"
+    cd $app_root
+    $java_cmd -Did=$app_name \
+	$JAVA_OPTIONS \
+	-classpath $CLASSPATH \
+	-Dcatalina.home=$tomcat_root \
+	-Dcatalina.base=$app_root \
+	-Dlog4j.configuration=file:$log4jfile \
+	-Denvironment=$env \
+	org.apache.catalina.startup.Bootstrap \
+	-config $confdir/server.xml \
+	stop >> $logdir/console.log 2>&1 &
+  ;;
+
+'init_config')
+  echo "*** creating config for $app_name..."
+     echo tomcat_root is set to $tomcat_root
+     cp -r $tomcat_root/webapps/ROOT $app_root/webapps/ 
+     cp -r $tomcat_root/webapps/manager $app_root/webapps/ 
+     cp -r $tomcat_root/webapps/host-manager $app_root/webapps/ 
+     rsync -av --exclude=context.xml $tomcat_root/conf/ $app_root/conf 
+     mkdir -p $logdir
+     echo $app_name container set up completed
+  ;;
+
+*)
+  echo "usage: $0 { start | stop | status }"
+esac
+
