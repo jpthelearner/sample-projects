@@ -1,0 +1,10 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+configurations {
+	xjc
+	sshAntTask
+}
+
+apply from: 'gradle_files/lib.gradle'
+
