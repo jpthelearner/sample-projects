@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.jp.com/jdbc" elementFormDefault="qualified"
+	xmlns:jdbc="http://www.jp.com/jdbc">
+
+    <complexType name="ShipRequest"> 
+    	<sequence>
+    		<element name="id" type="long"></element>
+    		<element name="requestStatusId" type="long"></element>
+    		<element name="fpId" type="long"></element>
+    		<element name="createdBy" type="string"></element>
+    		<element name="dateCreated" type="dateTime"></element>
+    	</sequence>
+    </complexType>
+
+</schema>

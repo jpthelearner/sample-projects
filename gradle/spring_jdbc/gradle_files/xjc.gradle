@@ -1,0 +1,19 @@
+task generateSources(){
+   description 'Converts xsds to classes'
+   def jaxbTargetDir = file( 'src/main/java-generated' )
+   jaxbTargetDir.deleteDir()
+
+   doLast {
+           jaxbTargetDir.mkdirs()
+
+           ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xjc.asPath)
+           ant.jaxbTargetDir = jaxbTargetDir
+
+           ant.xjc(destdir: '${jaxbTargetDir}', package: 'com.jp.war_proj_tmpl.schema') {
+                           schema(dir:'src/main/xsd', includes: '*.xsd')
+           }
+   }
+}
+
+compileJava.dependsOn(generateSources)
+
