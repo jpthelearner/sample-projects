@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ##### Env variables ######################
-export P4PORT=perforce.swe.covad.com:1666
-export P4USER=kjeyapra
-export P4PASSWD=p4forjp
-export P4CLIENT=jp.hudson.megabus.main.1
+export P4PORT=
+export P4USER=
+export P4PASSWD=
+export P4CLIENT=
 changes_found=0;
 build_dir=/home/kjeyapra/workspace/megabus/build
 cur_dir=${pwd}
